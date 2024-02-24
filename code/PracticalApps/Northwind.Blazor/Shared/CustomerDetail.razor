@@ -1,4 +1,7 @@
-﻿<EditForm Model="@Customer" OnValidSubmit="@OnValidSubmit">
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+
+<EditForm Model="@Customer" OnValidSubmit="@OnValidSubmit">
   <DataAnnotationsValidator />
   <div class="form-group">
     <div>

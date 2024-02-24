@@ -1,4 +1,6 @@
-﻿@rendermode RenderMode.InteractiveServer
+﻿@rendermode InteractiveAuto
+@* @rendermode RenderMode.InteractiveWebAssembly *@
+
 @page "/deletecustomer/{customerid}"
 @inject INorthwindService _service
 @inject NavigationManager _navigation
@@ -9,10 +11,7 @@
   Warning! This action cannot be undone!
 </div>
 
-<CustomerDetail ButtonText="Delete Customer"
-                ButtonStyle="danger"
-                Customer="@customer"
-                OnValidSubmit="@Delete" />
+<CustomerDetail ButtonText="Delete Customer" ButtonStyle="danger" Customer="@customer" OnValidSubmit="@Delete" />
 
 @code {
   [Parameter]

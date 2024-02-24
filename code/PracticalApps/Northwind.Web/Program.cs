@@ -11,22 +11,22 @@ builder.Services.AddRequestDecompression();
 
 builder.WebHost.ConfigureKestrel((context, options) =>
 {
-  options.ConfigureEndpointDefaults(listenOptions =>
-  {
-    listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
-    listenOptions.UseHttps(); // HTTP/3 requires secure connections.
-  });
+	options.ConfigureEndpointDefaults(listenOptions =>
+	{
+		listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+		listenOptions.UseHttps(); // HTTP/3 requires secure connections.
+	});
 });
 
 var app = builder.Build();
 
-#endregion
+#endregion Configure the web server host and services
 
 #region Configure the HTTP pipeline and routes
 
 if (!app.Environment.IsDevelopment())
 {
-  app.UseHsts();
+	app.UseHsts();
 }
 
 app.UseRequestDecompression();
@@ -35,26 +35,26 @@ app.UseRequestDecompression();
 // to intercept HTTP requests and responses.
 app.Use(async (HttpContext context, Func<Task> next) =>
 {
-  RouteEndpoint? rep = context.GetEndpoint() as RouteEndpoint;
+	RouteEndpoint? rep = context.GetEndpoint() as RouteEndpoint;
 
-  if (rep is not null)
-  {
-    WriteLine($"Endpoint name: {rep.DisplayName}");
-    WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
-  }
+	if (rep is not null)
+	{
+		WriteLine($"Endpoint name: {rep.DisplayName}");
+		WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
+	}
 
-  if (context.Request.Path == "/bonjour")
-  {
-    // In the case of a match on URL path, this becomes a terminating
-    // delegate that returns so does not call the next delegate.
-    await context.Response.WriteAsync("Bonjour Monde!");
-    return;
-  }
+	if (context.Request.Path == "/bonjour")
+	{
+		// In the case of a match on URL path, this becomes a terminating
+		// delegate that returns so does not call the next delegate.
+		await context.Response.WriteAsync("Bonjour Monde!");
+		return;
+	}
 
-  // We could modify the request before calling the next delegate.
-  await next();
+	// We could modify the request before calling the next delegate.
+	await next();
 
-  // We could modify the response after calling the next delegate.
+	// We could modify the response after calling the next delegate.
 });
 
 app.UseHttpsRedirection();
@@ -64,9 +64,9 @@ app.UseStaticFiles();
 
 app.MapRazorPages();
 app.MapGet("/hello", () =>
-  $"Environment is {app.Environment.EnvironmentName}");
+	$"Environment is {app.Environment.EnvironmentName}");
 
-#endregion
+#endregion Configure the HTTP pipeline and routes
 
 // Start the web server, host the website, and wait for requests.
 app.Run(); // This is a thread-blocking call.

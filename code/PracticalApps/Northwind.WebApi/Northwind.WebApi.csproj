@@ -9,16 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- change Sqlite to SqlServer if you prefer -->
-    <ProjectReference Include="..\Northwind.DataContext.SqlServer\Northwind.DataContext.SqlServer.csproj" />
-  </ItemGroup>
+    <!-- <ProjectReference Include="..\Northwind.DataContext.SqlServer\Northwind.DataContext.SqlServer.csproj" /> -->
+		<ProjectReference Include="..\Northwind.DataContext.Sqlite\Northwind.DataContext.Sqlite.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Using Include="System.Console" Static="true" />

@@ -5,20 +5,20 @@ namespace PacktFeatures.Pages;
 
 public class EmployeesListPageModel : PageModel
 {
-  private NorthwindContext _db;
+	private NorthwindContext _db;
 
-  public EmployeesListPageModel(NorthwindContext db)
-  {
-    _db = db;
-  }
+	public EmployeesListPageModel(NorthwindContext db)
+	{
+		_db = db;
+	}
 
-  public Employee[] Employees { get; set; } = null!;
+	public Employee[] Employees { get; set; } = null!;
 
-  public void OnGet()
-  {
-    ViewData["Title"] = "Northwind B2B - Employees";
+	public void OnGet()
+	{
+		ViewData["Title"] = "Northwind B2B - Employees";
 
-    Employees = _db.Employees.OrderBy(e => e.LastName)
-      .ThenBy(e => e.FirstName).ToArray();
-  }
+		Employees = _db.Employees.OrderBy(e => e.LastName)
+			.ThenBy(e => e.FirstName).ToArray();
+	}
 }

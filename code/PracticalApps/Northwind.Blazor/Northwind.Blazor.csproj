@@ -4,17 +4,22 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+		<RunAOTCompilation>true</RunAOTCompilation>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+    <Content Remove="Components\Fibonacci.razor" />
   </ItemGroup>
+
+  <ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
+	</ItemGroup>
 
   <ItemGroup>
     <!-- change Sqlite to SqlServer if you prefer -->
     <ProjectReference Include="..\Northwind.DataContext.Sqlite\Northwind.DataContext.Sqlite.csproj" />
-    <ProjectReference Include="..\Northwind.Blazor.Services\Northwind.Blazor.Services.csproj" />
-    <!--<ProjectReference Include="..\Northwind.Blazor.Wasm\Northwind.Blazor.Wasm.csproj" />-->
+    <!--<ProjectReference Include="..\Northwind.Blazor.Services\Northwind.Blazor.Services.csproj" />-->
+    <ProjectReference Include="..\Northwind.Blazor.Wasm\Northwind.Blazor.Wasm.csproj" />
   </ItemGroup>
 
   <ItemGroup>

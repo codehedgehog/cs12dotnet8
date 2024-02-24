@@ -1,9 +1,10 @@
 ﻿@attribute [StreamRendering(true)]
+@* @rendermode RenderMode.InteractiveWebAssembly *@
+
 @page "/customers/{country?}"
 @inject INorthwindService _service
 <h3>
-  Customers @(string.IsNullOrWhiteSpace(Country)
-  ? "Worldwide" : "in " + Country)
+  Customers @(string.IsNullOrWhiteSpace(Country) ? "Worldwide" : "in " + Country)
 </h3>
 <div class="form-group">
   <a class="btn btn-info" href="createcustomer">
@@ -42,7 +43,7 @@ else
       <td>
         <a class="btn btn-info" href="editcustomer/@c.CustomerId">
           <i class="bi bi-pencil"></i></a>
-        <a class="btn btn-danger" 
+        <a class="btn btn-danger"
            href="deletecustomer/@c.CustomerId">
           <i class="bi bi-trash"></i></a>
       </td>
