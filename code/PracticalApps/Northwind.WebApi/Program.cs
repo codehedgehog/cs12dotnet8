@@ -5,6 +5,7 @@ using Northwind.EntityModels; // To use AddNorthwindContext method.
 using Northwind.WebApi.Repositories; // To use ICustomerRepository.
 using Swashbuckle.AspNetCore.SwaggerUI; // To use SubmitMethod.
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpLogging(options =>
@@ -14,9 +15,13 @@ builder.Services.AddHttpLogging(options =>
 	options.ResponseBodyLogLimit = 4096; // Default is 32k.
 });
 
+builder.Services.AddCors(options =>
+	options.AddPolicy(name: MyAllowSpecificOrigins,
+										policy => policy.WithOrigins("https://localhost:5161").AllowAnyMethod().AllowAnyHeader())
+	);
+
 // Add services to the container.
-builder.Services.AddSingleton<IMemoryCache>(
-	new MemoryCache(new MemoryCacheOptions()));
+builder.Services.AddSingleton<IMemoryCache>(new MemoryCache(new MemoryCacheOptions()));
 
 builder.Services.AddNorthwindContext();
 
@@ -74,6 +79,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

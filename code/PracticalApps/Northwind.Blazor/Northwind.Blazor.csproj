@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\CustomerDetail.razor" />
     <Content Remove="Components\Fibonacci.razor" />
   </ItemGroup>
 

@@ -309,5 +309,6 @@ public partial class NorthwindContext : DbContext
 
 		OnModelCreatingPartial(modelBuilder);
 	}
+
 	partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

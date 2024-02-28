@@ -29,8 +29,7 @@ Welcome to your new app.
 
   public async Task AlertBrowser()
   {
-    await JSRuntime.InvokeVoidAsync(
-      "messageBox", "Blazor poking the browser");
+    await JSRuntime.InvokeVoidAsync("messageBox", "Blazor poking the browser");
   }
 
   public async Task SetColor()
