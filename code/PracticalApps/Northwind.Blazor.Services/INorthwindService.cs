@@ -12,7 +12,7 @@ public interface INorthwindService
 
 	Task<Customer> CreateCustomerAsync(Customer c);
 
-	Task<Customer> UpdateCustomerAsync(Customer c);
+	Task UpdateCustomerAsync(Customer c);
 
 	Task DeleteCustomerAsync(string id);
 }
